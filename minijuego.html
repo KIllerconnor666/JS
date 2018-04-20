@@ -2,8 +2,12 @@
 <html>
 <head>
 	<title></title>
+
+	<link rel="stylesheet" type="text/css" href="superEstilo.css">
 </head>
-<body onkeypress="tecla(event)" style="text-align: center" name="cuerpo">
+<body onkeypress="tecla(event)" name="cuerpo">
+	<p id="puntos"></p>
+	<p id ="vidas"></p>
 
 	<input type='image' id='casilla0' src='suelo.jpg' width='70px' height='70px' draggable='false'>
 	<input type='image' id='casilla1' src='suelo.jpg' width='70px' height='70px' draggable='false'>
@@ -87,33 +91,49 @@
 
 		var goblins = []
 
+		var tiempo = 0
+
 		function tecla(e){
 			
 			switch (window.event.keyCode) {
 				//W
 				case 119:
+					if (prota.vivo) {
+						prota.moverX(-1)
+					}
 					
-					prota.moverX(-1)
 					break
 
 				//A
 				case 97:
-					prota.moverY(-1)
+					if (prota.vivo) {
+						prota.moverY(-1)
+					}
+					
 					break
 
 				//S
 				case 115:
-					prota.moverX(1)
+					if (prota.vivo) {
+						prota.moverX(1)
+					}
+					
 					break
 
 				//D
 				case 100:
-					prota.moverY(1)
+					if (prota.vivo) {
+						prota.moverY(1)
+					}
+					
 					break
 
 				//Espacio
 				case 32:
-					window.alert(casillas)
+					if (prota.vivo) {
+						prota.pegar()
+					}
+					
 					break
 				
 			}
@@ -124,18 +144,49 @@
 			prota = new Caballero()
 			prota.crear()
 
-			goblins = [new Goblin(),new Goblin(),new Goblin(),new Goblin(),new Goblin()]
+			goblins = [new Goblin(),new Goblin(),new Goblin(),new Goblin(),new Goblin(), new Goblin()]
 
 			for(i = 0; i<5; i++){
 
 				goblins[i].crear()
 			}
+
+			loop()
+			contarTiempo()
+		}
+
+		function contarTiempo(){
+
+			tiempo++
+
+			prota.comprobarSangre()
+
+			mostrar()
+
+			if (prota.vivo) {
+				setTimeout("contarTiempo()", 1000)
+			}	
+		}
+
+		function loop(){
+
+			for(i = 0; i<goblins.length; i++){
+
+				goblins[i].mover()
+
+			}
+
+			if (prota.vivo) {
+				setTimeout("loop()", 1500)
+			}
+			
 		}
 
 		function Goblin(){
 
 			this.x = Math.trunc(Math.random()*7)
 			this.y = Math.trunc(Math.random()*7)
+			this.vivo = true
 		}
 
 		Goblin.prototype.crear = function(){
@@ -149,14 +200,85 @@
 				this.x = Math.trunc(Math.random()*7)
 				this.y = Math.trunc(Math.random()*7)
 				this.crear()
+			}	
+		}
+
+		Goblin.prototype.mover = function(){
+
+			if(this.vivo == true){
+
+				randomX = randomIntFromInterval(-1, 1)
+				randomY = randomIntFromInterval(-1, 1)
+
+				while((this.x+randomX <= -1) || (this.x+randomX >= 7)){
+
+					randomX = randomIntFromInterval(-1, 1)
+				}
+
+				while((this.y+randomY <= -1) || (this.y+randomY >= 7)){
+
+					randomY = randomIntFromInterval(-1, 1)
+				}
+
+				for(k = 0; k<goblins.length; k++){
+
+					if((prota.vidas > 0) && (this.x == prota.x) && (this.y == prota.y)){
+
+						casillas[this.x][this.y].src = "caballero.jpg"
+						break
+
+					}if((goblins[k].vivo == false) && (this.x == goblins[k].x) && (this.y == goblins[k].y)){
+
+						casillas[this.x][this.y].src = "sangre.jpg"
+						break
+
+					}else {
+
+						casillas[this.x][this.y].src = "suelo.jpg"
+					}
+				}
+
+				this.x = this.x+randomX
+				this.y = this.y+randomY
+				casillas[this.x][this.y].src = "goblin.jpg"
+
+				this.pegar()
+			}		
+		}
+
+		Goblin.prototype.pegar = function(){
+
+			ostia = randomIntFromInterval(0, 1)
+
+			if (ostia == 1) {
+				
+				for(i = this.x-1; i<=this.x+1; i++){
+
+					for(j = this.y-1; j<=this.y+1;j++){
+
+						if((prota.x == i) && (prota.y == j)){
+
+							prota.vidas--
+
+							if (prota.vidas <= 0) {
+								prota.vivo = false
+								casillas[prota.x][prota.y].src = "muerte.jpg"
+							}
+						}
+
+					}
+				}
 			}
-			
 		}
 
 		function Caballero(){
 
 			this.x = Math.trunc(Math.random()*7)
 			this.y = Math.trunc(Math.random()*7)
+			this.vidas = 5
+			this.puntos = 0
+			this.sangre = 0
+			this.vivo = true
 		}
 
 		Caballero.prototype.crear = function(){
@@ -168,8 +290,25 @@
 
 			if((this.x+z > -1) && (this.x+z < 7)){
 
-				casillas[this.x][this.y].src = "suelo.jpg"
+				for(k = 0; k<goblins.length; k++){
+
+					if((goblins[k].vivo == true) && (this.x == goblins[k].x) && (this.y == goblins[k].y)){
+
+						casillas[this.x][this.y].src = "goblin.jpg"
+						break
+
+					}else {
+
+						casillas[this.x][this.y].src = "suelo.jpg"
+					}
+				}
+
 				this.x = this.x+z
+
+				if (casillas[this.x][this.y].src.indexOf("sangre.jpg") != -1) {
+					this.sangre++
+				}
+
 				casillas[this.x][this.y].src = "caballero.jpg"
 			}		
 		}
@@ -178,13 +317,84 @@
 
 			if((this.y+z > -1) && (this.y+z < 7)){
 
-				casillas[this.x][this.y].src = "suelo.jpg"
+				for(k = 0; k<goblins.length; k++){
+
+					if((goblins[k].vivo == true) && (this.x == goblins[k].x) && (this.y == goblins[k].y)){
+
+						casillas[this.x][this.y].src = "goblin.jpg"
+						break
+
+					}else {
+
+						casillas[this.x][this.y].src = "suelo.jpg"
+					}
+				}
+				
 				this.y = this.y+z
+
+				if (casillas[this.x][this.y].src.indexOf("sangre.jpg") != -1) {
+					this.sangre++
+				}
+
 				casillas[this.x][this.y].src = "caballero.jpg"
-			}
-			
+			}	
 		}
 
+		Caballero.prototype.pegar = function(){
+
+			for(i = this.x-1; i<=this.x+1; i++){
+
+				for(j = this.y-1; j<=this.y+1;j++){
+
+					for(k = 0; k<goblins.length; k++){
+
+						if((goblins[k].x == i) && (goblins[k].y == j)){
+
+							if(goblins[k].vivo){
+
+								prota.puntos++
+							}
+
+							goblins[k].vivo = false
+
+							if((this.x != goblins[k].x) || (this.y != goblins[k].y)){
+
+								casillas[i][j].src = "sangre.jpg"
+							}
+							
+							goblins[k] = new Goblin()
+							goblins[k].crear()
+
+						}
+					}
+
+				}
+			}
+		}
+
+		Caballero.prototype.comprobarSangre = function(){
+
+			if(this.sangre >= 10){
+
+				this.sangre = this.sangre -10
+				this.vidas++
+			}
+		}
+
+		function mostrar(){
+
+			puntos = document.getElementById("puntos")
+			vida = document.getElementById("vidas")
+
+			puntos.innerHTML = "Puntos: "+prota.puntos+" <-><-> Vidas: "+prota.vidas+" <-><-> Sangre: "+prota.sangre
+			vida.innerHTML = "<-><-><->Tiempo total: "+tiempo+"<-><-><->"
+		}
+
+		function randomIntFromInterval(min,max){
+		    return Math.floor(Math.random()*(max-min+1)+min);
+		}
+
+		//Comienza la ejecución
 		generarPersonajes()
 
 	</script>
