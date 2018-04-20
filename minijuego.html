@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body onkeypress="tecla(event)" style="text-align: center" name="cuerpo">
+
+	<input type='image' id='casilla0' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla1' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla2' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla3' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla4' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla5' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla6' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+
+	<br>
+
+	<input type='image' id='casilla7' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla8' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla9' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla10' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla11' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla12' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla13' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+
+	<br>
+
+	<input type='image' id='casilla14' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla15' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla16' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla17' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla18' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla19' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla20' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+
+	<br>
+
+	<input type='image' id='casilla21' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla22' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla23' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla24' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla25' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla26' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla27' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+
+	<br>
+
+	<input type='image' id='casilla28' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla29' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla30' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla31' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla32' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla33' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla34' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+
+	<br>
+
+	<input type='image' id='casilla35' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla36' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla37' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla38' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla39' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla40' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla41' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+
+	<br>
+
+	<input type='image' id='casilla42' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla43' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla44' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla45' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla46' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla47' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+	<input type='image' id='casilla48' src='suelo.jpg' width='70px' height='70px' draggable='false'>
+
+	<script>
+
+		var casillas = [[document.getElementById("casilla0"),document.getElementById("casilla1"),document.getElementById("casilla2"),document.getElementById("casilla3"),document.getElementById("casilla4"),document.getElementById("casilla5"),document.getElementById("casilla6")],
+		[document.getElementById("casilla7"),document.getElementById("casilla8"),document.getElementById("casilla9"),document.getElementById("casilla10"),document.getElementById("casilla11"),document.getElementById("casilla12"),document.getElementById("casilla13")],
+		[document.getElementById("casilla14"),document.getElementById("casilla15"),document.getElementById("casilla16"),document.getElementById("casilla17"),document.getElementById("casilla18"),document.getElementById("casilla19"),document.getElementById("casilla20")],
+		[document.getElementById("casilla21"),document.getElementById("casilla22"),document.getElementById("casilla23"),document.getElementById("casilla24"),document.getElementById("casilla25"),document.getElementById("casilla26"),document.getElementById("casilla27")],
+		[document.getElementById("casilla28"),document.getElementById("casilla29"),document.getElementById("casilla30"),document.getElementById("casilla31"),document.getElementById("casilla32"),document.getElementById("casilla33"),document.getElementById("casilla34")],
+		[document.getElementById("casilla35"),document.getElementById("casilla36"),document.getElementById("casilla37"),document.getElementById("casilla38"),document.getElementById("casilla39"),document.getElementById("casilla40"),document.getElementById("casilla41")],
+		[document.getElementById("casilla42"),document.getElementById("casilla43"),document.getElementById("casilla44"),document.getElementById("casilla45"),document.getElementById("casilla46"),document.getElementById("casilla47"),document.getElementById("casilla48")]];
+
+		var prota
+
+		var goblins = []
+
+		function tecla(e){
+			
+			switch (window.event.keyCode) {
+				//W
+				case 119:
+					
+					prota.moverX(-1)
+					break
+
+				//A
+				case 97:
+					prota.moverY(-1)
+					break
+
+				//S
+				case 115:
+					prota.moverX(1)
+					break
+
+				//D
+				case 100:
+					prota.moverY(1)
+					break
+
+				//Espacio
+				case 32:
+					window.alert(casillas)
+					break
+				
+			}
+		}
+
+		function generarPersonajes(){
+
+			prota = new Caballero()
+			prota.crear()
+
+			goblins = [new Goblin(),new Goblin(),new Goblin(),new Goblin(),new Goblin()]
+
+			for(i = 0; i<5; i++){
+
+				goblins[i].crear()
+			}
+		}
+
+		function Goblin(){
+
+			this.x = Math.trunc(Math.random()*7)
+			this.y = Math.trunc(Math.random()*7)
+		}
+
+		Goblin.prototype.crear = function(){
+
+			if (casillas[this.x][this.y].src.indexOf("suelo.jpg") != -1) {
+				
+				casillas[this.x][this.y].src = "goblin.jpg"
+
+			}else {
+
+				this.x = Math.trunc(Math.random()*7)
+				this.y = Math.trunc(Math.random()*7)
+				this.crear()
+			}
+			
+		}
+
+		function Caballero(){
+
+			this.x = Math.trunc(Math.random()*7)
+			this.y = Math.trunc(Math.random()*7)
+		}
+
+		Caballero.prototype.crear = function(){
+
+			casillas[this.x][this.y].src = "caballero.jpg"
+		}
+
+		Caballero.prototype.moverX = function(z){
+
+			if((this.x+z > -1) && (this.x+z < 7)){
+
+				casillas[this.x][this.y].src = "suelo.jpg"
+				this.x = this.x+z
+				casillas[this.x][this.y].src = "caballero.jpg"
+			}		
+		}
+
+		Caballero.prototype.moverY = function(z){
+
+			if((this.y+z > -1) && (this.y+z < 7)){
+
+				casillas[this.x][this.y].src = "suelo.jpg"
+				this.y = this.y+z
+				casillas[this.x][this.y].src = "caballero.jpg"
+			}
+			
+		}
+
+		generarPersonajes()
+
+	</script>
+
+</body>
+</html>
